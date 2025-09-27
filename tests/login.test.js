@@ -2,8 +2,16 @@ import http from 'k6/http';
 import { sleep, check } from 'k6';
 
 export const options = {
-  vus: 3,
-  duration: '30s',
+ 
+  stages: [
+     {duration: '10s', target:10},
+     {duration: '20s', target:10},
+     {duration: '10s', target:30},
+     {duration: '20s', target:30},
+
+  ],
+
+
   thresholds:{
       
       http_req_duration: ['p(90)<3000', 'max<5000'],
