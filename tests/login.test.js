@@ -1,5 +1,6 @@
 import http from 'k6/http';
 import { sleep, check } from 'k6';
+const postLogin = JSON.parse(open('../fixtures/postLogin.json'))
 
 export const options = {
  
@@ -23,9 +24,8 @@ export const options = {
 export default function () {
   const url = 'http://localhost:8000/snap/informacoes/cpf';
 
-  const payload = JSON.stringify({
-    cpf: '10091128480',
-  });
+  const payload = JSON.stringify(postLogin)
+   
 
   const params = {
     headers: {
